@@ -3,14 +3,14 @@ export const destinations = [
     id: 1,
     title: "Shri Mangueshi Temple",
     subtitle: "Houses a 7-foot tall idol of Lord Shiva.",
-    image: "/mangueshi.jpg",
+    image: "/1.jpg",
     description: "",
   },
   {
     id: 2,
     title: "Shri Shantadurga Temple",
     subtitle: "Known for its beautiful ornate wooden carvings.",
-    image: "/shantadurga.jpg",
+    image: "/1.jpg",
     description: "",
   },
   {

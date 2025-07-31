@@ -2,13 +2,13 @@ import { destinations } from "@/data/destinations";
 import DestinationsSection from "./_components/DestinationsSection";
 import VideoHero from "./_components/VideoHero";
 import HiddenGemsSection from "./_components/HiddenGemsSection";
-import { hiddenGems } from "@/data/hiddenGems";
 import { events } from "@/data/events";
 import WhatsHappeningSection from "./_components/WhatsHappeningSection";
 import InteractiveMapSection from "./_components/InteractiveMapSection";
 import GallerySection from "./_components/GallerySection";
 import { galleryImages } from "@/data/gallery";
 import ContactSection from "./_components/ContactSection";
+import { hiddenGems } from "@/data/hiddenGems";
 
 export default function HomePage() {
   return (
@@ -19,11 +19,15 @@ export default function HomePage() {
         title="DESTINATIONS"
         subtitle="Places to visit on your next trip to Goa"
       />
-      <HiddenGemsSection hiddenGems={hiddenGems} />
+      <HiddenGemsSection
+        hiddenGems={hiddenGems}
+        title="HIDDEN GEMS"
+        subtitle="Places to visit on your next trip to Goa"
+      />
       <WhatsHappeningSection events={events} />
       <InteractiveMapSection />
       <GallerySection images={galleryImages} />
       <ContactSection />
     </div>
-  )
+  );
 }

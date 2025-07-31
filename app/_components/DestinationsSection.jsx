@@ -1,243 +1,194 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
+// ✅ Hook to detect window size & set visible cards
+const useVisibleCards = () => {
+  const [count, setCount] = useState(5);
+
+  useEffect(() => {
+    const updateCount = () => {
+      if (window.innerWidth >= 1280) setCount(5); // Large screens
+      else if (window.innerWidth >= 768) setCount(3); // Medium
+      else setCount(3); // Small
+    };
+    updateCount();
+    window.addEventListener("resize", updateCount);
+    return () => window.removeEventListener("resize", updateCount);
+  }, []);
+
+  return count;
+};
 
 export default function DestinationsSection({
   destinations,
   title = "DESTINATIONS",
   subtitle = "Places to visit on your next trip to Goa",
 }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const visibleCards = useVisibleCards();
+  const prepend = destinations.slice(-visibleCards);
+  const append = destinations.slice(0, visibleCards);
+  const totalData = [...prepend, ...destinations, ...append];
+
+  const [currentIndex, setCurrentIndex] = useState(visibleCards);
+  const [transitioning, setTransitioning] = useState(true);
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [screenSize, setScreenSize] = useState("lg");
+  const intervalRef = useRef(null);
+  const carouselRef = useRef(null);
 
-  // Detect screen size
+  // ✅ Auto-play
   useEffect(() => {
-    const updateSize = () => {
-      const width = window.innerWidth;
-      if (width < 640) setScreenSize("sm");
-      else if (width < 1024) setScreenSize("md");
-      else setScreenSize("lg");
-    };
-
-    updateSize();
-    window.addEventListener("resize", updateSize);
-    return () => window.removeEventListener("resize", updateSize);
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex((prev) => prev + 1);
+    }, 4000);
+    return () => clearInterval(intervalRef.current);
   }, []);
-  if (!screenSize) return null; // or a skeleton/loading if needed
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % destinations.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + destinations.length) % destinations.length
-    );
-  };
-
-  // Auto-scroll functionality
+  // ✅ Infinite Loop Reset
   useEffect(() => {
-    if (!isAutoPlaying) return;
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [currentIndex, isAutoPlaying, destinations.length]);
-
-  // Dynamic visible items
-  const getVisibleItems = () => {
-    const numVisible = screenSize === "lg" ? 5 : 3;
-    const items = [];
-    for (let i = 0; i < numVisible; i++) {
-      const index =
-        (currentIndex + i - Math.floor(numVisible / 2) + destinations.length) %
-        destinations.length;
-      items.push({
-        ...destinations[index],
-        position: i,
-        isCenter: i === Math.floor(numVisible / 2),
-        actualIndex: index,
-      });
+    const totalRealSlides = destinations.length;
+    if (currentIndex === totalRealSlides + visibleCards) {
+      const timeout = setTimeout(() => {
+        setTransitioning(false);
+        requestAnimationFrame(() => {
+          setCurrentIndex(visibleCards);
+          requestAnimationFrame(() => setTransitioning(true));
+        });
+      }, 600);
+      return () => clearTimeout(timeout);
     }
-    return items;
-  };
-
-  const visibleItems = getVisibleItems();
-
-  const handleImageClick = (item) => {
-    if (item.isCenter) {
-      window.open(`/destinations/${item.actualIndex}`, "_blank");
-    } else {
-      const steps = item.position - visibleItems.findIndex((v) => v.isCenter);
-      setCurrentIndex(
-        (prev) => (prev + steps + destinations.length) % destinations.length
-      );
+    if (currentIndex === 0) {
+      const timeout = setTimeout(() => {
+        setTransitioning(false);
+        requestAnimationFrame(() => {
+          setCurrentIndex(totalRealSlides);
+          requestAnimationFrame(() => setTransitioning(true));
+        });
+      }, 600);
+      return () => clearTimeout(timeout);
     }
+  }, [currentIndex, destinations.length, visibleCards]);
+
+  const nextSlide = () => setCurrentIndex((prev) => prev + 1);
+  const prevSlide = () => setCurrentIndex((prev) => prev - 1);
+
+  const handleMouseEnter = () => intervalRef.current && clearInterval(intervalRef.current);
+  const handleMouseLeave = () => {
+    intervalRef.current = setInterval(() => setCurrentIndex((prev) => prev + 1), 4000);
   };
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-wide">
-            {title}
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
-        </div>
+    <section className="relative w-full bg-gray-50 py-12 md:py-16 lg:py-20 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 md:mb-12">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4">
+          {title}
+        </h2>
+        <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto">
+          {subtitle}
+        </p>
+      </div>
 
-        {/* Carousel */}
+      <div
+        ref={carouselRef}
+        className="relative w-full overflow-hidden"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <div
-          className="relative h-[420px] flex items-end justify-center"
-          onMouseEnter={() => setIsAutoPlaying(false)}
-          onMouseLeave={() => setIsAutoPlaying(true)}
+          className="flex"
+          style={{
+            transform: `translateX(-${(currentIndex * 100) / totalData.length}%)`,
+            transition: transitioning ? "transform 0.6s ease-in-out" : "none",
+            width: `${(totalData.length / visibleCards) * 100}%`,
+          }}
         >
-          <div className="flex items-end justify-center w-full gap-2 md:gap-4 lg:gap-6">
-            {visibleItems.map((item) => {
-              // Set size based on position and screen
-              const isEdge =
-                item.position === 0 ||
-                item.position === visibleItems.length - 1;
-              const classMap = {
-                sm: item.isCenter ? "w-64 h-80 z-20" : "w-40 h-60 z-10",
-                md: item.isCenter ? "w-72 h-88 z-20" : "w-52 h-70 z-15",
-                lg: item.isCenter
-                  ? "w-80 h-96 z-20"
-                  : isEdge
-                  ? "w-48 h-64 z-10"
-                  : "w-64 h-80 z-15",
-              };
-              const sizeClass = classMap[screenSize] || "w-64 h-80";
-
-              return (
-                <motion.div
-                  key={`${item.actualIndex}-${item.position}-${currentIndex}`}
-                  className={`relative cursor-pointer ${sizeClass}`}
-                  initial={false}
-                  animate={{
-                    scale: item.isCenter ? 1.1 : isEdge ? 0.9 : 1,
-                    opacity: isEdge ? 0.8 : 1,
-                  }}
-                  transition={{
-                    duration: 0.6,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  }}
-                  whileHover={{
-                    scale: item.isCenter ? 1.15 : 1.05,
-                    y: -5,
-                  }}
-                  onMouseEnter={() => setHoveredCard(item.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                  onClick={() => handleImageClick(item)}
-                >
-                  <div className="relative h-full rounded-2xl overflow-hidden shadow-lg group">
-                    <Image
-                      src={item.image || "/placeholder.svg"}
-                      alt={item.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      priority={item.isCenter}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                      <h3
-                        className={`font-bold mb-1 ${
-                          item.isCenter ? "text-xl" : "text-lg"
-                        }`}
-                      >
-                        {item.title}
-                      </h3>
-                      <p
-                        className={`text-gray-200 mb-2 ${
-                          item.isCenter ? "text-sm" : "text-xs"
-                        }`}
-                      >
-                        {item.subtitle}
-                      </p>
-                      {item.isCenter && hoveredCard === item.id && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <p className="text-sm mb-3 line-clamp-2">
-                            {item.description}
-                          </p>
-                          <motion.button
-                            className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-200"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            Explore Now
-                          </motion.button>
-                        </motion.div>
-                      )}
-                    </div>
-                    {!item.isCenter && (
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="bg-white/90 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">
-                          Click to view
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-          {/* Arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg z-30 transition-all duration-200 hover:scale-110"
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg z-30 transition-all duration-200 hover:scale-110"
-          >
-            <ChevronRight className="h-6 w-6" />
-          </button>
+          {totalData.map((item, index) => (
+            <div
+              key={`${item.id}-${index}`}
+              style={{ width: `${100 / totalData.length}%` }}
+              className="px-1 sm:px-2 md:px-3 lg:px-4"
+            >
+              <motion.div
+                className="relative h-64 sm:h-72 md:h-80 lg:h-96 rounded-xl md:rounded-2xl overflow-hidden shadow-lg cursor-pointer group"
+                whileHover={{ scale: 1.03 }}
+                onMouseEnter={() => setHoveredCard(item.id)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <Image
+                  src={item.image || "/placeholder.svg"}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gray-500/50 p-2 sm:p-3 md:p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <h3 className="font-bold text-black text-sm sm:text-base md:text-lg">
+                    {item.title}
+                  </h3>
+                  <p className="text-black text-xs sm:text-sm md:text-base">
+                    {item.subtitle}
+                  </p>
+                  <motion.button
+                    className="mt-2 md:mt-3 bg-[#98D204] hover:bg-[#98D204] active:bg-[#4A6604] 
+                    text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs sm:text-sm font-semibold"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    Read More
+                  </motion.button>
+                </div>
+              </motion.div>
+            </div>
+          ))}
         </div>
 
-        {/* Progress Dots - Show only 5 centered dots */}
-        <div className="flex justify-center mt-8 space-x-2">
-          {Array.from({ length: 5 }).map((_, i) => {
-            const middle = Math.floor(5 / 2);
-            const offset = i - middle;
-            const index =
-              (currentIndex + offset + destinations.length) %
-              destinations.length;
+        {/* Navigation */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white p-2 md:p-3 rounded-full shadow hover:scale-110 transition"
+        >
+          <ChevronLeft className="h-4 w-4 md:h-6 md:w-6 text-gray-800" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white p-2 md:p-3 rounded-full shadow hover:scale-110 transition"
+        >
+          <ChevronRight className="h-4 w-4 md:h-6 md:w-6 text-gray-800" />
+        </button>
+      </div>
 
-            return (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+      {/* Progress Dots */}
+      <div className="flex justify-center mt-8 md:mt-11 space-x-2">
+        {Array.from({ length: 5 }).map((_, i) => {
+          const middle = Math.floor(5 / 2);
+          const offset = i - middle;
+          const index =
+            (currentIndex + offset + destinations.length) % destinations.length;
+
+          return (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 
+                ${
                   index === currentIndex
-                    ? "bg-primary scale-125"
-                    : "bg-gray-300 hover:bg-gray-400"
+                    ? "bg-[#98D204] scale-125"
+                    : "bg-gray-300 hover:bg-[#98D204]"
                 }`}
-              />
-            );
-          })}
-        </div>
+            />
+          );
+        })}
+      </div>
 
-        {/* Discover More Button */}
-        <div className="text-center mt-8">
-          <Link href="/destinations">
-            <button className="bg-accent hover:bg-accent/90 text-white px-8 py-3 rounded-full font-semibold text-lg transition-all duration-200 hover:scale-105">
-              Discover More
-            </button>
-          </Link>
-        </div>
+      {/* Discover More */}
+      <div className="text-center mt-6 md:mt-10">
+        <Link href="/destinations">
+          <button className="bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
+            Discover More
+          </button>
+        </Link>
       </div>
     </section>
   );

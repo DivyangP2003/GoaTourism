@@ -1,39 +1,38 @@
+import { MapPin } from "lucide-react";
+
 export default function InteractiveMapSection() {
   return (
-    <section className="py-16 bg-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4 font-serif">Interactive Map</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore Goa's attractions, beaches, and heritage sites on our interactive map
+    <section className="py-10 sm:py-12 md:py-16 bg-gray-100">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        {/* Heading */}
+        <div className="text-center mb-8 sm:mb-10 md:mb-12">
+          <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold text-black mb-3 sm:mb-4 font-serif">
+            Interactive Map
+          </h2>
+          <p className="text-[clamp(0.9rem,2vw,1.125rem)] text-gray-600 max-w-2xl mx-auto px-2">
+            Explore Goa's attractions, beaches, and heritage sites on our
+            interactive map
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div className="h-96 md:h-[500px] bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
+        {/* Map Container */}
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg overflow-hidden">
+          <div className="h-64 sm:h-80 md:h-[400px] lg:h-[500px] bg-[#FF7B00] flex items-center justify-center p-4">
             <div className="text-center">
-              <div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <svg className="w-12 h-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-transparent rounded-full mx-auto mb-3 sm:mb-4 flex items-center justify-center">
+                <MapPin className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-gray-300" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-700 mb-2">Interactive Map Coming Soon</h3>
-              <p className="text-gray-500">We're working on bringing you an amazing interactive map experience</p>
+              <h3 className="text-[clamp(1.1rem,2.5vw,1.5rem)] font-semibold text-white mb-1 sm:mb-2">
+                Interactive Map Coming Soon
+              </h3>
+              <p className="text-[clamp(0.8rem,2vw,1rem)] text-gray-300">
+                We're working on bringing you an amazing interactive map
+                experience
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -4,7 +4,7 @@ export const events = [
     title: "Goa Carnival 2024",
     date: "February 10-13, 2024",
     location: "Panaji",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/1.jpg",
     description: "Annual carnival celebration with colorful parades, music, and dance.",
   },
   {
