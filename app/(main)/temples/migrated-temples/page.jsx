@@ -32,7 +32,7 @@ export default function MigratedTemplesPage() {
             <Link key={district.id} href={`/temples/migrated-temples/${district.slug}`}>
               <div className="group cursor-pointer">
                 {/* District Box */}
-                <div className="bg-gray-300 hover:bg-gray-400 transition-colors duration-300 rounded-lg h-32 flex items-center justify-center mb-3 group-hover:shadow-lg">
+                <div className="bg-gray-300 hover:bg-gray-400 transition-colors duration-300 rounded-lg h-40 sm:h-48 md:h-52 lg:h-56 flex items-center justify-center mb-3 group-hover:shadow-lg">
                   <div className="text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <MapPin className="h-8 w-8 text-gray-600 mx-auto mb-2" />
                     <span className="text-sm text-gray-600 font-medium">

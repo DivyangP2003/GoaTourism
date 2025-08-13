@@ -5,7 +5,7 @@ import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
 export default function Footer() {
   return (
     <footer className="bg-white text-gray-800 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 tiny:grid-cols-2">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-8 grid grid-cols-2 md:grid-cols-3 gap-6 tiny:grid-cols-2">
         
         {/* Brand Section */}
         <div className="text-xs sm:text-sm md:text-base">
@@ -40,7 +40,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Explore */}
+        {/* Explore
         <div className="text-xs sm:text-sm md:text-base">
           <h3 className="font-bold mb-2 uppercase">Explore</h3>
           <ul className="space-y-1">
@@ -52,7 +52,7 @@ export default function Footer() {
             <li><Link href="#" className="hover:text-[#F26419]">Gallery</Link></li>
             <li><Link href="#" className="hover:text-[#F26419]">Interactive Map</Link></li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Contact Info */}
         <div className="text-xs sm:text-sm md:text-base">

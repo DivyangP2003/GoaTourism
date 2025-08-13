@@ -1,3 +1,4 @@
+import ContactSection from "@/app/_components/ContactSection"
 import Image from "next/image"
 
 export default function AboutUsContent() {
@@ -98,7 +99,7 @@ export default function AboutUsContent() {
 
         
 
-        {/* Call to Action */}
+        {/* Call to Action
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-bold text-black mb-6">Join Our Journey</h3>
           <p className="text-lg text-black mb-8 max-w-2xl mx-auto">
@@ -113,8 +114,11 @@ export default function AboutUsContent() {
               Join Heritage Trails
             </button>
           </div>
-        </div>
+        </div> */}
+
+        
       </div>
+      <ContactSection/>
     </div>
   )
 }

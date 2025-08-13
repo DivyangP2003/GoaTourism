@@ -88,7 +88,7 @@ export default function TemplesContent() {
                 {/* See More Button */}
                 <div className="pt-4">
                   <Link href={category.route}>
-                    <button className="group bg-accent text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-destructive transition-all duration-200 flex items-center space-x-2">
+                    <button className="group cursor-pointer bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-8 py-3 rounded-full font-semibold text-lg  transition-all duration-200 flex items-center space-x-2">
                       <span>See More</span>
                       <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
                     </button>
@@ -99,7 +99,7 @@ export default function TemplesContent() {
           ))}
         </div>
 
-        {/* Visit Information */}
+        {/* Visit Information
         <div className="mt-20 bg-gray-50 rounded-2xl p-8">
           <h3 className="text-2xl font-bold text-black mb-6 text-center">Temple Visiting Guidelines</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -133,9 +133,9 @@ export default function TemplesContent() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        {/* Call to Action */}
+        {/* Call to Action
         <div className="mt-16 text-center bg-primary/5 rounded-2xl p-8">
           <h3 className="text-2xl font-bold text-black mb-4">Explore Goa's Spiritual Heritage</h3>
           <p className="text-lg text-black mb-6 max-w-2xl mx-auto">
@@ -154,7 +154,7 @@ export default function TemplesContent() {
               </button>
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
