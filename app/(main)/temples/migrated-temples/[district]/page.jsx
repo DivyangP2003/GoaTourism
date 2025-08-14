@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ChevronRight, Home } from "lucide-react";
+import { ArrowLeft, ChevronRight, Home, MapPin } from "lucide-react";
 import { goaDistricts } from "@/data/goaDistricts";
 import { migratedTemplesByDistrict } from "@/data/migratedTemplesDistrictWise";
 
@@ -137,15 +137,21 @@ export default function MigratedTemplesDistrictPage() {
               >
                 <div className="group cursor-pointer">
                   {/* District Box */}
-                  <div className="bg-white border-2 border-gray-300 hover:border-[#ff7b00] transition-colors duration-300 rounded-lg h-40 flex items-center justify-center mb-3 group-hover:shadow-lg">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/10 transition-colors duration-300">
-                        <span className="text-2xl font-bold text-gray-600 group-hover:text-primary">
-                          {otherDistrict.name.charAt(0)}
-                        </span>
-                      </div>
-                      <span className="text-sm text-gray-600 group-hover:text-primary font-medium">
-                        {migratedTemplesByDistrict[otherDistrict.slug]
+                  
+
+                  <div
+                    className="relative bg-gray-300 hover:bg-gray-400 transition-colors duration-300 rounded-lg h-40 sm:h-48 md:h-52 lg:h-56 flex items-center justify-center mb-3 group-hover:shadow-lg overflow-hidden"
+                    style={{
+                      backgroundImage: `url(${otherDistrict.image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  >
+                    {/* Hover Content */}
+                    <div className="relative z-10 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <MapPin className="h-8 w-8 text-white mx-auto mb-2 font-bold" />
+                      <span className="text-sm text-white font-bold">
+                         {migratedTemplesByDistrict[otherDistrict.slug]
                           ?.length || 0}{" "}
                         Temples
                       </span>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronRight, Home, MapPin } from "lucide-react";
+import { ArrowLeft, ChevronRight, Home, MapPin } from "lucide-react";
 import { goaDistricts } from "@/data/goaDistricts";
 import Image from "next/image";
 
@@ -45,32 +45,7 @@ export default function MonumentsPage() {
           </Link>
         </div>
 
-        {/* Districts Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {goaDistricts.map((district) => (
-            <Link key={district.id} href={`/monuments/${district.slug}`}>
-              <div className="group cursor-pointer">
-                {/* District Box */}
-                <div className="bg-gray-300 hover:bg-gray-400 transition-colors duration-300 rounded-lg h-40 sm:h-48 md:h-52 lg:h-56 flex items-center justify-center mb-3 group-hover:shadow-lg">
-                  <div className="text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <MapPin className="h-8 w-8 text-gray-600 mx-auto mb-2" />
-                    <span className="text-sm text-gray-600 font-medium">
-                      {district.monumentCount} Monuments
-                    </span>
-                  </div>
-                </div>
-
-                {/* District Name */}
-                <h3 className="text-lg font-semibold text-black text-center group-hover:text-primary transition-colors duration-200">
-                  {district.name}
-                </h3>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* Monuments Information Section */}
-        <div className="mt-16 bg-white rounded-2xl p-8 shadow-lg">
+        <div className="my-16 bg-white rounded-2xl p-8 shadow-lg">
           <h2 className="text-2xl font-bold text-black mb-6 text-center">
             Explore Historical Monuments by Region
           </h2>
@@ -86,7 +61,7 @@ export default function MonumentsPage() {
           {/* Statistics */}
           <div className="grid grid-cols-2 md:grid-cols-2 gap-8 mt-8">
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary mb-2">
+              <div className="text-3xl font-bold mb-2 text-[#ff7b00]">
                 {goaDistricts.reduce(
                   (total, district) => total + district.monumentCount,
                   0
@@ -95,18 +70,55 @@ export default function MonumentsPage() {
               <p className="text-gray-600">Total Monuments in Goa</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-accent mb-2">12</div>
+              <div className="text-3xl font-bold text-[#ff7b00] mb-2">12</div>
               <p className="text-gray-600">Districts Covered</p>
             </div>
           </div>
         </div>
 
+        {/* Districts Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {goaDistricts.map((district) => (
+            <Link key={district.id} href={`/monuments/${district.slug}`}>
+              <div className="group cursor-pointer">
+                {/* District Box with Background Image */}
+                <div
+                  className="relative bg-gray-300 hover:bg-gray-400 transition-colors duration-300 rounded-lg h-40 sm:h-48 md:h-52 lg:h-56 flex items-center justify-center mb-3 group-hover:shadow-lg overflow-hidden"
+                  style={{
+                    backgroundImage: `url(${district.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  {/* Hover Content */}
+                  <div className="relative z-10 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <MapPin className="h-8 w-8 text-white mx-auto mb-2 font-bold" />
+                    <span className="text-sm text-white font-bold">
+                      {district.templeCount} Temples
+                    </span>
+                  </div>
+                </div>
+
+                {/* District Name */}
+                <h3 className="text-lg font-semibold text-black text-center group-hover:text-primary transition-colors duration-200">
+                  {district.name}
+                </h3>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Monuments Information Section */}
+
         {/* Back Navigation */}
         <div className="mt-12 text-center">
           <Link href="/">
-            <button className="bg-primary text-black px-8 py-3 rounded-full font-semibold text-lg hover:bg-secondary hover:text-white transition-all duration-200">
-              ← Back to Home
-            </button>
+            <div className="flex justify-center">
+              <button className="flex items-center gap-2 bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
+                <ArrowLeft className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
+                Back To Home
+              </button>
+            </div>
           </Link>
         </div>
       </div>

@@ -15,7 +15,7 @@ export const goaDistricts = [
     description: "Home to popular beaches and several historic temples with Portuguese influence.",
     templeCount: 12,
     monumentCount: 3,
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/2.jpeg",
   },
   {
     id: "bicholim",

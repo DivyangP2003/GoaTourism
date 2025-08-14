@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { festivalsData } from "@/data/festivals-data";
-import { ChevronRight, Home } from "lucide-react";
+import { ArrowLeft, ChevronRight, Home } from "lucide-react";
 
 const monthNames = {
   chaitra: "Chaitra",
@@ -85,14 +85,14 @@ export default function MonthFestivalsPage({ params }) {
                 .replace(/\s+/g, "-")}`}
               className="group cursor-pointer"
             >
-              <div className="relative rounded-lg overflow-hidden w-full h-40 sm:h-48 md:h-52 lg:h-56 border border-transparent group-hover:border-yellow-400 group-hover:shadow-xl transition-all duration-300">
+              <div className="relative rounded-lg overflow-hidden w-full h-40 sm:h-48 md:h-52 lg:h-56 border border-transparent group-hover:border-[#ff7b00] group-hover:shadow-xl transition-all duration-300">
                 <Image
                   src={festival.image || "/fallback.jpg"} // fallback image if not present
                   alt={festival.name}
                   fill
                   className="object-cover transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
                 <p className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-lg font-semibold drop-shadow-md text-center px-2">
                   {festival.name}
                 </p>
@@ -104,9 +104,12 @@ export default function MonthFestivalsPage({ params }) {
       {/* Back Link */}
       <div className="mb-12 text-center">
         <Link href="/festivals">
-          <button className="bg-primary text-black px-6 py-2 rounded-full font-medium text-lg hover:bg-secondary hover:text-white transition-all duration-200">
-            ← Back to Festivals
-          </button>
+          <div className="flex justify-center">
+            <button className="flex items-center gap-2 bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
+              <ArrowLeft className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
+              Back To Festivals
+            </button>
+          </div>
         </Link>
       </div>
     </div>

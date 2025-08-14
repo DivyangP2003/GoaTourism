@@ -33,7 +33,7 @@ export default function ArchaelogyContent() {
 
       {/* Introduction Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 p-8 rounded-2xl border-2 border-[#ff7b00]">
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
             Archaeological Treasures of Goa
           </h2>
