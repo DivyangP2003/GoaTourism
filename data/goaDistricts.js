@@ -6,7 +6,7 @@ export const goaDistricts = [
     description: "Northernmost taluka of Goa, known for its pristine beaches and ancient temples.",
     templeCount: 8,
     monumentCount: 3,
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/1.jpg",
   },
   {
     id: "bardez",

@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Calendar, MapPin, Users, ArrowRight } from "lucide-react"
-import Image from "next/image"
-import { templeCategories } from "@/data/temples"
-import TempleCarousel from "./TempleCarousel"
+import Link from "next/link";
+import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { templeCategories } from "@/data/temples";
+import TempleCarousel from "./TempleCarousel";
 
 export default function TemplesContent() {
   return (
@@ -25,18 +25,23 @@ export default function TemplesContent() {
 
         {/* TEMPLES Text Overlay */}
         <div className="relative z-10 flex items-center justify-center h-full">
-          <h1 className="text-6xl md:text-8xl font-bold text-white tracking-wider drop-shadow-lg">TEMPLES</h1>
+          <h1 className="text-6xl md:text-8xl font-bold text-white tracking-wider drop-shadow-lg">
+            TEMPLES
+          </h1>
         </div>
       </div>
 
       {/* Introduction Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Sacred Heritage of Goa</h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 ">
+        <div className="text-center mb-16 p-8 rounded-2xl border-2 border-[#ff7b00]">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
+            Sacred Heritage of Goa
+          </h2>
           <p className="text-lg text-black leading-relaxed max-w-4xl mx-auto">
-            Discover the spiritual heart of Goa through its magnificent temples, categorized by their historical periods
-            and unique stories. Each category represents a different era of Goan temple architecture and the evolution
-            of Hindu culture in the region.
+            Discover the spiritual heart of Goa through its magnificent temples,
+            categorized by their historical periods and unique stories. Each
+            category represents a different era of Goan temple architecture and
+            the evolution of Hindu culture in the region.
           </p>
         </div>
 
@@ -50,18 +55,34 @@ export default function TemplesContent() {
               }`}
             >
               {/* Carousel Section */}
-              <div suppressHydrationWarning className={`${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
-                <TempleCarousel images={category.images} categoryTitle={category.title} />
+              <div
+                suppressHydrationWarning
+                className={`${index % 2 === 1 ? "lg:col-start-2" : ""}`}
+              >
+                <TempleCarousel
+                  images={category.images}
+                  categoryTitle={category.title}
+                />
               </div>
 
               {/* Content Section */}
-              <div className={`space-y-6 ${index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}`}>
+              <div
+                className={`space-y-6 ${
+                  index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""
+                }`}
+              >
                 <div>
-                  <h3 className="text-3xl md:text-4xl font-bold text-black mb-2">{category.title}</h3>
-                  <p className="text-xl text-primary font-semibold mb-4">{category.subtitle}</p>
+                  <h3 className="text-3xl md:text-4xl font-bold text-black mb-2">
+                    {category.title}
+                  </h3>
+                  <p className="text-xl text-primary font-semibold mb-4">
+                    {category.subtitle}
+                  </p>
                 </div>
 
-                <p className="text-lg text-black leading-relaxed">{category.description}</p>
+                <p className="text-lg text-black leading-relaxed">
+                  {category.description}
+                </p>
 
                 {/* Features */}
                 <div className="grid grid-cols-2 gap-3">
@@ -75,10 +96,15 @@ export default function TemplesContent() {
 
                 {/* Examples List */}
                 <div>
-                  <h4 className="font-semibold text-black mb-2">Notable Examples:</h4>
+                  <h4 className="font-semibold text-black mb-2">
+                    Notable Examples:
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {category.examples.map((example, idx) => (
-                      <span key={idx} className="bg-gray-100 text-black px-3 py-1 rounded-full text-sm">
+                      <span
+                        key={idx}
+                        className="bg-gray-100 text-black px-3 py-1 rounded-full text-sm"
+                      >
                         {example}
                       </span>
                     ))}
@@ -157,5 +183,5 @@ export default function TemplesContent() {
         </div> */}
       </div>
     </div>
-  )
+  );
 }
