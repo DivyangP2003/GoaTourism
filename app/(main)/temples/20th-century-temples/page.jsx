@@ -3,8 +3,11 @@
 import Link from "next/link";
 import { ArrowLeft, ChevronRight, Home, MapPin } from "lucide-react";
 import { goaDistricts } from "@/data/goaDistricts";
+import { twentiethCenturyTemplesByDistrict } from "@/data/twentyCenturtTemplesDistrictWise";
 
 export default function TwentiethCenturyTemplesPage() {
+  const totalTemples = Object.values(twentiethCenturyTemplesByDistrict)
+    .reduce((sum, temples) => sum + temples.length, 0);
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -51,12 +54,7 @@ export default function TwentiethCenturyTemplesPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
             <div className="text-center">
               <div className="text-3xl font-bold text-[#ff7b00] mb-2">
-                {Math.floor(
-                  goaDistricts.reduce(
-                    (total, district) => total + district.templeCount,
-                    0
-                  ) * 0.3
-                )}
+                {totalTemples}
               </div>
               <p className="text-gray-600">Modern Temples</p>
             </div>
@@ -96,7 +94,7 @@ export default function TwentiethCenturyTemplesPage() {
                   <div className="relative z-10 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <MapPin className="h-8 w-8 text-white mx-auto mb-2 font-bold" />
                     <span className="text-sm text-white font-bold">
-                      {district.templeCount} Temples
+                      {twentiethCenturyTemplesByDistrict[district.id]?.length || 0} Temples
                     </span>
                   </div>
                 </div>

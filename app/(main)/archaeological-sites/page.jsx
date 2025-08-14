@@ -1,7 +1,7 @@
 import ArchaelogyContent from "./_components/ArchaeologyContent"
 
 export const metadata = {
-  title: "Temples - YUGAANTAR",
+  title: "Archaeology - YUGAANTAR",
   description:
     "Explore the sacred temples of Goa - ancient Hindu temples, their rich history, architecture, and spiritual significance.",
 }

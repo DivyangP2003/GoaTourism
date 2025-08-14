@@ -3,35 +3,25 @@
 import Link from "next/link";
 import { ArrowLeft, ChevronRight, Home, MapPin } from "lucide-react";
 import { goaDistricts } from "@/data/goaDistricts";
-import Image from "next/image";
-import { ancientMonumentsByDistrict } from "@/data/monuments";
+import { asiSitesByDistrict } from "@/data/asiSitesDistrictWise";
 
-export default function MonumentsPage() {
-    const totalMonuments = Object.values(ancientMonumentsByDistrict)
-    .reduce((sum, temples) => sum + temples.length, 0);
+export default function ASISitesPage() {
+  const totalSites = Object.values(asiSitesByDistrict).reduce(
+    (sum, temples) => sum + temples.length,
+    0
+  );
+
   return (
-    <div className="min-h-screen bg-white">
-      <div className="relative h-96 overflow-hidden mb-12">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/festivals-hero.jpg" // Replace with your actual image path
-            alt="Hindu Festivals in Goa"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-
-        {/* FESTIVALS Text Overlay */}
-        <div className="relative z-10 flex items-center justify-center h-full">
-          <h1 className="text-6xl md:text-8xl font-bold text-white tracking-wider drop-shadow-lg">
-            MONUMENTS
+    <div className="min-h-screen bg-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Page Title */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-black tracking-wide">
+            ASI SITES
           </h1>
         </div>
-      </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        {/* Breadcrumb Navigation */}
         <div className="flex items-center space-x-2 text-sm text-gray-600 mb-12">
           <Link
             href="/"
@@ -41,37 +31,46 @@ export default function MonumentsPage() {
           </Link>
           <ChevronRight className="h-4 w-4" />
           <Link
-            href="/monuments"
+            href="/archaeological-sites"
             className="hover:text-primary transition-colors duration-200"
           >
-            Monuments
+            Archaeological Sites
           </Link>
+          <ChevronRight className="h-4 w-4" />
+          <span className="text-black font-medium">ASI Sites</span>
         </div>
 
+        {/* Information Section */}
         <div className="my-16 bg-white rounded-2xl p-8 shadow-lg">
           <h2 className="text-2xl font-bold text-black mb-6 text-center">
-            Explore Historical Monuments by Region
+            Explore ASI Protected Sites by District
           </h2>
           <p className="text-lg text-gray-700 leading-relaxed text-center max-w-4xl mx-auto mb-8">
-            Dive into the rich history of Goa through its iconic monuments
-            spread across different regions. From ancient forts overlooking the
-            Arabian Sea to colonial-era churches and mansions, each structure
-            tells a unique story of Goa’s cultural and political past. Click on
-            any region to uncover the historical monuments it holds and explore
-            the legacy they preserve.
+            Discover the Archaeological Survey of India (ASI) protected sites
+            across Goa organized by district. Each region showcases unique
+            historical monuments, forts, churches, caves, and heritage
+            structures that tell the story of Goa's rich cultural past. Click on
+            any district to explore the ASI sites in that area and learn about
+            their archaeological and historical significance.
           </p>
 
           {/* Statistics */}
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
             <div className="text-center">
               <div className="text-3xl font-bold mb-2 text-[#ff7b00]">
-                {totalMonuments}
+                {totalSites}
               </div>
-              <p className="text-gray-600">Total Monuments in Goa</p>
+              <p className="text-gray-600">Total ASI Protected Sites</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-[#ff7b00] mb-2">12</div>
+              <div className="text-3xl font-bold  mb-2 text-[#ff7b00]">12</div>
               <p className="text-gray-600">Districts Covered</p>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold  mb-2 text-[#ff7b00]">
+                6th-19th
+              </div>
+              <p className="text-gray-600">Century Heritage</p>
             </div>
           </div>
         </div>
@@ -79,7 +78,10 @@ export default function MonumentsPage() {
         {/* Districts Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {goaDistricts.map((district) => (
-            <Link key={district.id} href={`/monuments/${district.slug}`}>
+            <Link
+              key={district.id}
+              href={`/archaeological-sites/asi-sites/${district.slug}`}
+            >
               <div className="group cursor-pointer">
                 {/* District Box with Background Image */}
                 <div
@@ -94,7 +96,7 @@ export default function MonumentsPage() {
                   <div className="relative z-10 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <MapPin className="h-8 w-8 text-white mx-auto mb-2 font-bold" />
                     <span className="text-sm text-white font-bold">
-                      {ancientMonumentsByDistrict[district.id]?.length || 0} Monuments
+                      {asiSitesByDistrict[district.id]?.length || 0} ASI Sites
                     </span>
                   </div>
                 </div>
@@ -108,15 +110,13 @@ export default function MonumentsPage() {
           ))}
         </div>
 
-        {/* Monuments Information Section */}
-
         {/* Back Navigation */}
         <div className="mt-12 text-center">
-          <Link href="/">
+          <Link href="/archaeological-sites">
             <div className="flex justify-center">
               <button className="flex items-center gap-2 bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
                 <ArrowLeft className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
-                Back To Home
+                Back To Archaeological Sites
               </button>
             </div>
           </Link>

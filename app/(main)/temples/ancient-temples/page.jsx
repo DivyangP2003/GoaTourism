@@ -3,18 +3,21 @@
 import Link from "next/link";
 import {
   ArrowLeft,
-  ArrowRight,
-  ChevronLeft,
   ChevronRight,
   Home,
   MapPin,
 } from "lucide-react";
+import { ancientTemplesByDistrict } from "@/data/ancientTemplesDitrictWise";
 import { goaDistricts } from "@/data/goaDistricts";
 
 export default function AncientTemplesPage() {
+  const totalTemples = Object.values(ancientTemplesByDistrict)
+    .reduce((sum, temples) => sum + temples.length, 0);
+
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
         {/* Page Title */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-black tracking-wide">
@@ -57,36 +60,24 @@ export default function AncientTemplesPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
             <div className="text-center">
               <div className="text-3xl font-bold mb-2 text-[#ff7b00]">
-                {goaDistricts.reduce(
-                  (total, district) => total + district.templeCount,
-                  0
-                )}
+                {totalTemples}
               </div>
               <p className="text-gray-600">Total Ancient Temples</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold  mb-2 text-[#ff7b00]">12</div>
+              <div className="text-3xl font-bold mb-2 text-[#ff7b00]">
+                {goaDistricts.length}
+              </div>
               <p className="text-gray-600">Districts Covered</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold  mb-2 text-[#ff7b00]">
+              <div className="text-3xl font-bold mb-2 text-[#ff7b00]">
                 12th-16th
               </div>
               <p className="text-gray-600">Century Heritage</p>
             </div>
           </div>
         </div>
-
-        {/* <div className="my-10 text-center bg-white p-4 rounded-2xl border-2 border-[#ff7b00]">
-          <h3 className="text-3xl font-bold text-black mb-4">
-            Taluka-Wise Guide to Ancient Temples of Goa
-          </h3>
-          <p className="text-lg text-black leading-relaxed max-w-5xl text-center mx-auto">
-            Explore the rich heritage of Goa through its ancient temples,
-            organized taluka-wise. Discover architectural marvels, historical
-            legends, and cultural significance across every corner of the state.
-          </p>
-        </div> */}
 
         {/* Districts Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -109,7 +100,7 @@ export default function AncientTemplesPage() {
                   <div className="relative z-10 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <MapPin className="h-8 w-8 text-white mx-auto mb-2 font-bold" />
                     <span className="text-sm text-white font-bold">
-                      {district.templeCount} Temples
+                      {ancientTemplesByDistrict[district.id]?.length || 0} Temples
                     </span>
                   </div>
                 </div>

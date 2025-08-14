@@ -34,7 +34,7 @@ export const archaeologyCategories = [
       "Ancient and Colonial Architecture",
     ],
     examples: ["Basilica of Bom Jesus", "Se Cathedral", "Fort Aguada"],
-    route: "/archaeology/asi-sites",
+    route: "/archaeological-sites/asi-sites",
   },
   {
     id: "state-archaeological-sites",
@@ -71,7 +71,7 @@ export const archaeologyCategories = [
       "Diverse Heritage (Fort, Temple, Cave, Megalithic)",
     ],
     examples: ["Mahadev Temple Tambdi Surla", "Arvalem Caves", "Tiracol Fort"],
-    route: "/archaeology/state-sites",
+    route: "/archaeological-sites/state-sites",
   },
   {
     id: "non-recognised-sites",
@@ -108,6 +108,6 @@ export const archaeologyCategories = [
       "Potential for Future Conservation",
     ],
     examples: ["Mauxi Rock Engravings", "Village Shrine Ruins", "Ancient Forest Well"],
-    route: "/archaeology/unprotected-sites",
+    route: "/archaeological-sites/unprotected-sites",
   },
 ];

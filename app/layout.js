@@ -3,7 +3,7 @@ import Navbar from "./_components/Navbar"
 import "./globals.css"
 
 export const metadata = {
-  title: "YUGAANTAR - Discover Goa's Heritage",
+  title: "YUGAANTAR",
   description:
     "Explore the rich heritage, culture, and traditions of Konkan Goa through temples, festivals, monuments, and archaeological sites.",
 }
