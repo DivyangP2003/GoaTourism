@@ -3,13 +3,13 @@ export const galleryImages = [
     id: 1,
     title: "Shri Mangueshi Temple Illumination",
     category: "Temple",
-    image: "/mangueshi.jpg",
+    image: "/1.jpg",
   },
   {
     id: 2,
     title: "Intricate Carvings at Shantadurga Temple",
     category: "Temple",
-    image: "/shantadurga.jpg",
+    image: "/2.jpeg",
   },
   {
     id: 3,
