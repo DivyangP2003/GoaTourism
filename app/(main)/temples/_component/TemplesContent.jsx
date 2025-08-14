@@ -5,6 +5,7 @@ import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { templeCategories } from "@/data/temples";
 import TempleCarousel from "./TempleCarousel";
+import ContactSection from "@/app/_components/ContactSection";
 
 export default function TemplesContent() {
   return (
@@ -124,6 +125,7 @@ export default function TemplesContent() {
             </div>
           ))}
         </div>
+        
 
         {/* Visit Information
         <div className="mt-20 bg-gray-50 rounded-2xl p-8">
@@ -182,6 +184,7 @@ export default function TemplesContent() {
           </div>
         </div> */}
       </div>
+      <ContactSection/>
     </div>
   );
 }

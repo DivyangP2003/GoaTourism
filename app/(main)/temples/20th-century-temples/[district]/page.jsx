@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronRight, Home } from "lucide-react";
+import { ArrowLeft, ChevronRight, Home } from "lucide-react";
 import { goaDistricts } from "@/data/goaDistricts";
 import { ancientTemplesByDistrict } from "@/data/ancientTemplesDitrictWise";
 import { twentiethCenturyTemplesByDistrict } from "@/data/twentyCenturtTemplesDistrictWise";
@@ -137,7 +137,7 @@ export default function TwentiethCenturyDistrictTemplesPage() {  const params = 
               >
                 <div className="group cursor-pointer">
                   {/* District Box */}
-                  <div className="bg-white border-2 border-gray-300 hover:border-primary transition-colors duration-300 rounded-lg h-40 flex items-center justify-center mb-3 group-hover:shadow-lg">
+                  <div className="bg-white border-2 border-gray-300 hover:border-[#ff7b00] transition-colors duration-300 rounded-lg h-40 flex items-center justify-center mb-3 group-hover:shadow-lg">
                     <div className="text-center">
                       <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/10 transition-colors duration-300">
                         <span className="text-2xl font-bold text-gray-600 group-hover:text-primary">
@@ -165,9 +165,12 @@ export default function TwentiethCenturyDistrictTemplesPage() {  const params = 
         {/* Back Navigation */}
         <div className="mt-16 text-center pb-16">
           <Link href="/temples/20th-century-temples">
-            <button className="bg-primary text-black px-8 py-3 rounded-full font-semibold text-lg hover:bg-secondary hover:text-white transition-all duration-200">
-              ← Back to All Districts
-            </button>
+            <div className="flex justify-center">
+              <button className="flex items-center gap-2 bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
+                <ArrowLeft className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
+                Back To 20th Century Temples
+              </button>
+            </div>
           </Link>
         </div>
       </div>
