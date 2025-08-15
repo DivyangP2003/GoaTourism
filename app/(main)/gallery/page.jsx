@@ -45,9 +45,9 @@ const getGridItemClass = (index) => {
     "md:col-span-2 md:row-span-1", // Wide
     "md:col-span-1 md:row-span-1", // Small
     "md:col-span-1 md:row-span-1", // Small
-  ]
-  return patterns[index % patterns.length]
-}
+  ];
+  return patterns[index % patterns.length];
+};
 
 export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -124,7 +124,8 @@ export default function GalleryPage() {
             CULTURAL GALLERY
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto p-4">
-            Discover the rich heritage and vibrant culture of Goa through our curated collection
+            Discover the rich heritage and vibrant culture of Goa through our
+            curated collection
           </p>
         </div>
       </div>
@@ -133,13 +134,13 @@ export default function GalleryPage() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Search Bar */}
         <div className="relative mb-8 max-w-2xl mx-auto">
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#ff7b00] w-5 h-5 z-10" />
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#D6D6D6] w-5 h-5 z-10" />
           <Input
             type="text"
             placeholder="Search images by title or category..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-12 py-4 text-lg border-2 border-[#ff7b00] rounded-2xl focus:border-[#ff7b00] bg-white/80 backdrop-blur-sm"
+            className="pl-12 py-4 text-lg border-2 border-[#D6D6D6] rounded-2xl focus:border-[#D6D6D6] bg-white/80 backdrop-blur-sm"
           />
         </div>
 
@@ -149,14 +150,14 @@ export default function GalleryPage() {
             <Button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-3 text-sm font-medium transition-all duration-200 hover:scale-105
-   rounded-full border-2  
-    ${
-      selectedCategory === category
-        ? "bg-[#98D204] text-white border-[#98D204] hover:bg-[#98D204] active:bg-[#4A6604] shadow-lg"
-        : " backdrop-blur-sm bg-white text-black border-gray-300 hover:border-[#98D204] hover:bg-white"
-    }
-  `}
+              className={`px-6 py-2 text-sm font-medium transition-all duration-200 hover:scale-105
+           rounded-full border-2
+            ${
+              selectedCategory === category
+                ? "bg-[#98D204] text-white border-[#98D204] hover:bg-[#4A6604] active:bg-[#4A6604] shadow-lg"
+                : "backdrop-blur-sm bg-[#D6D6D6] text-black border-none hover:border-[#98D204] hover:bg-[#4A6604] hover:text-white"
+            }
+          `}
             >
               {categoryLabels[category]}
             </Button>
@@ -165,10 +166,14 @@ export default function GalleryPage() {
 
         {/* Results Count */}
         <div className="mb-6 text-center">
-           <p className="text-gray-600 text-lg">
-            Showing <span className="font-semibold text-[#ff7b00]">{filteredImages.length}</span> of{" "}
-            {galleryImages.length} images
-            {selectedCategory !== "All" && ` in ${categoryLabels[selectedCategory]}`}
+          <p className="text-gray-600 text-lg">
+            Showing{" "}
+            <span className="font-semibold text-[#ff7b00]">
+              {filteredImages.length}
+            </span>{" "}
+            of {galleryImages.length} images
+            {selectedCategory !== "All" &&
+              ` in ${categoryLabels[selectedCategory]}`}
           </p>
         </div>
       </div>
@@ -179,7 +184,7 @@ export default function GalleryPage() {
           {filteredImages.map((image) => (
             <Card
               key={image.id}
-              className="bg-gray-100 border-none break-inside-avoid cursor-pointer group overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-[1.05] pt-0"
+              className="bg-gray-500/50 opacity-100 border-none break-inside-avoid cursor-pointer group overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-[1.05] p-0"
               onClick={() => openLightbox(image)}
             >
               <div className="relative">
@@ -205,11 +210,13 @@ export default function GalleryPage() {
                     {image.category}
                   </span>
                 </div>
-              </div>
-              <div className="px-4">
-                <h3 className="font-semibold text-black leading-tight">
-                  {image.title}
-                </h3>
+
+                {/* Title - hidden until hover */}
+                <div className="absolute bottom-3 left-3 right-3 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                  <h3 className="text-white font-semibold text-lg leading-tight">
+                    {image.title}
+                  </h3>
+                </div>
               </div>
             </Card>
           ))}
@@ -262,8 +269,12 @@ export default function GalleryPage() {
 
             {/* Image */}
             <img
-              src={selectedImage.image || `/placeholder.svg?height=400&width=300&query=${encodeURIComponent(image.title)}`}
-
+              src={
+                selectedImage.image ||
+                `/placeholder.svg?height=400&width=300&query=${encodeURIComponent(
+                  image.title
+                )}`
+              }
               alt={selectedImage.title}
               className="max-w-full max-h-[80vh] object-contain"
             />

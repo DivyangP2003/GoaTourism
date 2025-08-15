@@ -117,7 +117,7 @@ export default function ArchaelogyCarousel({ images, categoryTitle }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <span className="bg-[#98D204] hover:bg-[#98D204] active:bg-[#4A6604] px-4 py-2 rounded-full text-sm font-semibold text-white">
+          <span className="bg-[#98D204] hover:bg-[#4A6604] active:bg-[#4A6604] px-4 py-2 rounded-full text-sm font-semibold text-white">
             {categoryTitle}
           </span>
         </motion.div>

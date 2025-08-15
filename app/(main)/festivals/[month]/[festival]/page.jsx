@@ -81,7 +81,7 @@ export default function FestivalDetailPage({ params }) {
                     <ChevronRight className="h-4 w-4" />
           <Link
             href={`/festivals/${monthName.toLowerCase()}/${festival.name.toLowerCase()}`}
-            className="hover:text-primary transition-colors duration-200"
+            className="hover:text-primary transition-colors duration-200 text-[#4A6604] font-semibold"
           >
             {festival.name}
           </Link>

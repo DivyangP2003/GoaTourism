@@ -69,7 +69,7 @@ export default function FestivalsPage() {
           <ChevronRight className="h-4 w-4" />
           <Link
             href="/festivals"
-            className="hover:text-primary transition-colors duration-200"
+            className="hover:text-primary transition-colors duration-200 text-[#4A6604] font-semibold"
           >
             Festivals
           </Link>
@@ -120,7 +120,7 @@ export default function FestivalsPage() {
         <div className="mt-12 text-center">
           <Link href="/">
             <div className="flex justify-center">
-              <button className="flex items-center gap-2 bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
+              <button className="flex items-center gap-2 bg-[#FF7B00] hover:bg-[#F26419] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
                 <ArrowLeft className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
                 Back To Home
               </button>

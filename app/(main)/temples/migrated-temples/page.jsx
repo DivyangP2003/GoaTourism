@@ -11,7 +11,7 @@ export default function MigratedTemplesPage() {
     .reduce((sum, temples) => sum + temples.length, 0);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Page Title */}
         <div className="text-center mb-12">
@@ -36,7 +36,7 @@ export default function MigratedTemplesPage() {
             Temples
           </Link>
           <ChevronRight className="h-4 w-4" />
-          <span className="text-black font-medium">Migrated Temples</span>
+          <span className="text-[#4A6604] font-semibold">Migrated Temples</span>
         </div>
 
         {/* Information Section */}
@@ -114,7 +114,7 @@ export default function MigratedTemplesPage() {
         <div className="mt-12 text-center">
           <Link href="/temples">
             <div className="flex justify-center">
-              <button className="flex items-center gap-2 bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
+              <button className="flex items-center gap-2 bg-[#FF7B00] hover:bg-[#F26419] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
                 <ArrowLeft className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
                 Back To Temples
               </button>

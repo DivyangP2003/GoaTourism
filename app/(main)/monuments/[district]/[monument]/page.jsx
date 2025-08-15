@@ -92,7 +92,7 @@ export default function MonumentDetailPage() {
             {district.name}
           </Link>
           <ChevronRight className="h-4 w-4" />
-          <span className="text-black font-medium">{monument.name}</span>
+          <span className="text-[#4A6604] font-semibold">{monument.name}</span>
         </div>
 
         {/* monument Information */}

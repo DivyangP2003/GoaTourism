@@ -77,7 +77,7 @@ export default function MigratedTempleDetailPage() {
             {district.name}
           </Link>
           <ChevronRight className="h-4 w-4" />
-          <span className="text-black font-medium">{temple.name}</span>
+          <span className="text-[#4A6604] font-semibold">{temple.name}</span>
         </div>
 
         {/* Temple Information */}

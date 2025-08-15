@@ -76,13 +76,25 @@ export default function HiddenGemsSection({
   const nextSlide = () => setCurrentIndex((prev) => prev + 1);
   const prevSlide = () => setCurrentIndex((prev) => prev - 1);
 
-  const handleMouseEnter = () => intervalRef.current && clearInterval(intervalRef.current);
+  const handleMouseEnter = () =>
+    intervalRef.current && clearInterval(intervalRef.current);
   const handleMouseLeave = () => {
-    intervalRef.current = setInterval(() => setCurrentIndex((prev) => prev + 1), 4000);
+    intervalRef.current = setInterval(
+      () => setCurrentIndex((prev) => prev + 1),
+      4000
+    );
   };
 
   return (
-    <section className="relative w-full bg-gray-100 py-12 md:py-16 lg:py-20 overflow-hidden">
+<section
+  className="relative w-full py-12 md:py-16 lg:py-20 overflow-hidden bg-repeat-x"
+  style={{
+    backgroundImage: "url('/Union.svg')",
+    backgroundSize: "auto 100%", // keep height 100%, repeat horizontally
+  }}
+>
+
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8 md:mb-12">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4">
           {title}
@@ -101,7 +113,9 @@ export default function HiddenGemsSection({
         <div
           className="flex"
           style={{
-            transform: `translateX(-${(currentIndex * 100) / totalData.length}%)`,
+            transform: `translateX(-${
+              (currentIndex * 100) / totalData.length
+            }%)`,
             transition: transitioning ? "transform 0.6s ease-in-out" : "none",
             width: `${(totalData.length / visibleCards) * 100}%`,
           }}
@@ -110,7 +124,7 @@ export default function HiddenGemsSection({
             <div
               key={`${item.id}-${index}`}
               style={{ width: `${100 / totalData.length}%` }}
-              className="px-1 sm:px-2 md:px-3 lg:px-4"
+              className="px-1 sm:px-2 md:px-3 lg:px-4 py-2 sm:py-3 md:py-4"
             >
               <motion.div
                 className="relative h-64 sm:h-72 md:h-80 lg:h-96 rounded-xl md:rounded-2xl overflow-hidden shadow-lg cursor-pointer group"
@@ -132,7 +146,7 @@ export default function HiddenGemsSection({
                     {item.subtitle}
                   </p>
                   <motion.button
-                    className="mt-2 md:mt-3 bg-[#98D204] hover:bg-[#98D204] active:bg-[#4A6604] 
+                    className="mt-2 md:mt-3 bg-[#98D204] hover:bg-[#4A6604] active:bg-[#4A6604] 
                     text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs sm:text-sm font-semibold"
                     whileHover={{ scale: 1.05 }}
                   >
@@ -147,13 +161,13 @@ export default function HiddenGemsSection({
         {/* Navigation */}
         <button
           onClick={prevSlide}
-          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white p-2 md:p-3 rounded-full shadow hover:scale-110 transition"
+          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2  bg-white/40 text-white p-2 md:p-3 rounded-full shadow hover:scale-110 transition-all duration-300 backdrop-blur-sm"
         >
           <ChevronLeft className="h-4 w-4 md:h-6 md:w-6 text-gray-800" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white p-2 md:p-3 rounded-full shadow hover:scale-110 transition"
+          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2  bg-white/40 text-white p-2 md:p-3 rounded-full shadow hover:scale-110 transition-all duration-300 backdrop-blur-sm"
         >
           <ChevronRight className="h-4 w-4 md:h-6 md:w-6 text-gray-800" />
         </button>
@@ -175,7 +189,7 @@ export default function HiddenGemsSection({
                 ${
                   index === currentIndex
                     ? "bg-[#98D204] scale-125"
-                    : "bg-gray-300 hover:bg-[#98D204]"
+                    : "bg-gray-300 hover:bg-[#4A6604]"
                 }`}
             />
           );
@@ -185,7 +199,7 @@ export default function HiddenGemsSection({
       {/* Discover More */}
       <div className="text-center mt-6 md:mt-10">
         <Link href="/hiddenGems">
-          <button className="bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
+          <button className="bg-[#FF7B00] hover:bg-[#F26419] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
             Discover More
           </button>
         </Link>

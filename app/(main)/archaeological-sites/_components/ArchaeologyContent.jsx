@@ -1,7 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
+import {
+  Calendar,
+  MapPin,
+  Users,
+  ArrowRight,
+  Home,
+  ChevronRight,
+} from "lucide-react";
 import Image from "next/image";
 import { archaeologyCategories } from "@/data/archaelogical";
 import ArchaelogyCarousel from "./ArchaeologyCarousel";
@@ -33,7 +40,22 @@ export default function ArchaelogyContent() {
 
       {/* Introduction Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-16 p-8 rounded-2xl border-2 border-[#ff7b00]">
+        <div className="flex items-center space-x-2 text-sm text-gray-600 mb-12">
+          <Link
+            href="/"
+            className="hover:text-primary transition-colors duration-200"
+          >
+            <Home className="h-4 w-4" />
+          </Link>
+          <ChevronRight className="h-4 w-4" />
+          <Link
+            href="/archaeological-sites"
+            className="hover:text-primary transition-colors duration-200 text-[#4A6604] font-semibold"
+          >
+            Archaeological Sites
+          </Link>
+        </div>
+        <div className="my-16 bg-white rounded-2xl p-8 shadow-lg text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
             Archaeological Treasures of Goa
           </h2>
@@ -116,7 +138,7 @@ export default function ArchaelogyContent() {
                 {/* See More Button */}
                 <div className="pt-4">
                   <Link href={category.route}>
-                    <button className="group cursor-pointer bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-8 py-3 rounded-full font-semibold text-lg  transition-all duration-200 flex items-center space-x-2">
+                    <button className="group cursor-pointer bg-[#FF7B00] hover:bg-[#F26419] active:bg-[#F26419] text-white px-8 py-3 rounded-full font-semibold text-lg  transition-all duration-200 flex items-center space-x-2">
                       <span>See More</span>
                       <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
                     </button>

@@ -100,11 +100,11 @@ export default function GallerySection() {
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-2 text-sm font-medium transition-all duration-200 hover:scale-105
-   rounded-full border-2  
+   rounded-full border-2
     ${
       selectedCategory === category
-        ? "bg-[#98D204] text-white border-[#98D204] hover:bg-[#98D204] active:bg-[#4A6604] shadow-lg"
-        : "backdrop-blur-sm bg-white text-black border-gray-300 hover:border-[#98D204] hover:bg-white"
+        ? "bg-[#98D204] text-white border-[#98D204] hover:bg-[#4A6604] active:bg-[#4A6604] shadow-lg"
+        : "backdrop-blur-sm bg-[#D6D6D6] text-black border-none hover:border-[#98D204] hover:bg-[#4A6604] hover:text-white"
     }
   `}
             >
@@ -118,16 +118,22 @@ export default function GallerySection() {
           {visibleImages.map((image) => (
             <Card
               key={image.id}
-              className="bg-gray-100 border-none break-inside-avoid cursor-pointer group overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-[1.05] pt-0"
+              className="bg-gray-500/50 opacity-100 border-none break-inside-avoid cursor-pointer group overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-[1.05] p-0"
               onClick={() => openLightbox(image)}
             >
               <div className="relative">
                 <img
-                  src={image.image}
+                  src={
+                    image.image ||
+                    `/placeholder.svg?height=400&width=300&query=${encodeURIComponent(
+                      image.title
+                    )}`
+                  }
                   alt={image.title}
                   className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                 <div className="absolute top-3 right-3">
                   <span
                     className={`px-2 py-1 rounded-full text-xs font-medium border ${
@@ -138,11 +144,13 @@ export default function GallerySection() {
                     {image.category}
                   </span>
                 </div>
-              </div>
-              <div className="px-4">
-                <h3 className="font-semibold text-black leading-tight">
-                  {image.title}
-                </h3>
+
+                {/* Title - hidden until hover */}
+                <div className="absolute bottom-3 left-3 right-3 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                  <h3 className="text-white font-semibold text-lg leading-tight">
+                    {image.title}
+                  </h3>
+                </div>
               </div>
             </Card>
           ))}
@@ -152,9 +160,9 @@ export default function GallerySection() {
         {filteredImages.length > 8 && (
           <div className="text-center mt-8">
             <Link href="/gallery">
-              <Button className="bg-[#FF7B00] text-white px-6 py-3 rounded-full hover:bg-[#e56e00]">
+              <button className="bg-[#FF7B00] hover:bg-[#F26419] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
                 View More
-              </Button>
+              </button>
             </Link>
           </div>
         )}
@@ -212,9 +220,7 @@ export default function GallerySection() {
                   {selectedImage.category}
                 </span>
               </div>
-              <h2 className="text-2xl font-bold mb-2">
-                {selectedImage.title}
-              </h2>
+              <h2 className="text-2xl font-bold mb-2">{selectedImage.title}</h2>
             </div>
           </div>
         </div>

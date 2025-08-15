@@ -38,13 +38,13 @@ export default function AncientTemplesDistrictPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-white">
       {/* Hero Section with Background Image */}
       <div className="relative h-64 overflow-hidden mb-16">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/placeholder.svg?height=400&width=1200"
+            src={district.image || "/placeholder.svg"}
             alt={`Ancient Temples in ${district.name}`}
             fill
             className="object-cover"
@@ -89,7 +89,7 @@ export default function AncientTemplesDistrictPage() {
             href={`/temples/ancient-temples/${encodeURIComponent(
               district.name.toLowerCase()
             )}`}
-            className="hover:text-primary transition-colors duration-200"
+            className="hover:text-primary transition-colors duration-200 text-[#4A6604] font-semibold"
           >
             {district.name}
           </Link>
@@ -171,7 +171,7 @@ export default function AncientTemplesDistrictPage() {
         <div className="mt-16 text-center pb-16">
           <Link href="/temples/ancient-temples">
             <div className="flex justify-center">
-              <button className="flex items-center gap-2 bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
+              <button className="flex items-center gap-2 bg-[#FF7B00] hover:bg-[#F26419] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
                 <ArrowLeft className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
                 Back To Ancient Temples
               </button>

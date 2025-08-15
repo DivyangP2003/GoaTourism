@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Calendar, MapPin, Users, ArrowRight } from "lucide-react";
+import { Calendar, MapPin, Users, ArrowRight, Home, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { templeCategories } from "@/data/temples";
 import TempleCarousel from "./TempleCarousel";
@@ -26,7 +26,7 @@ export default function TemplesContent() {
 
         {/* TEMPLES Text Overlay */}
         <div className="relative z-10 flex items-center justify-center h-full">
-          <h1 className="text-6xl md:text-8xl font-bold text-white tracking-wider drop-shadow-lg">
+          <h1 className="text-6xl md:text-8xl font-bold text-white tracking-wider drop-shadow-lg  ">
             TEMPLES
           </h1>
         </div>
@@ -34,11 +34,26 @@ export default function TemplesContent() {
 
       {/* Introduction Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 ">
-        <div className="text-center mb-16 p-8 rounded-2xl border-2 border-[#ff7b00]">
+         <div className="flex items-center space-x-2 text-sm text-gray-600 mb-12">
+          <Link
+            href="/"
+            className="hover:text-primary transition-colors duration-200"
+          >
+            <Home className="h-4 w-4" />
+          </Link>
+          <ChevronRight className="h-4 w-4" />
+          <Link
+            href="/temples"
+            className="hover:text-primary transition-colors duration-200 text-[#4A6604] font-semibold"
+          >
+            Temples
+          </Link>
+        </div>
+        <div className="my-16 bg-white rounded-2xl p-8 shadow-lg text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
             Sacred Heritage of Goa
           </h2>
-          <p className="text-lg text-black leading-relaxed max-w-4xl mx-auto">
+          <p className="text-lg text-black leading-relaxed max-w-5xl mx-auto">
             Discover the spiritual heart of Goa through its magnificent temples,
             categorized by their historical periods and unique stories. Each
             category represents a different era of Goan temple architecture and
@@ -115,7 +130,7 @@ export default function TemplesContent() {
                 {/* See More Button */}
                 <div className="pt-4">
                   <Link href={category.route}>
-                    <button className="group cursor-pointer bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-8 py-3 rounded-full font-semibold text-lg  transition-all duration-200 flex items-center space-x-2">
+                    <button className="group cursor-pointer bg-[#FF7B00] hover:bg-[#F26419] active:bg-[#F26419] text-white px-8 py-3 rounded-full font-semibold text-lg  transition-all duration-200 flex items-center space-x-2">
                       <span>See More</span>
                       <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
                     </button>

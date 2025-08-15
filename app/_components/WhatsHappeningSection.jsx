@@ -40,7 +40,7 @@ export default function WhatsHappeningSection() {
 
               {/* Content */}
               <div className="p-3 sm:p-4 md:p-6">
-                <h3 className="text-[clamp(1rem,2vw,1.25rem)] font-bold text-gray-800 mb-2 sm:mb-3 group-hover:text-green-600 transition-colors duration-200">
+                <h3 className="text-[clamp(1rem,2vw,1.25rem)] font-bold text-gray-800 mb-2 sm:mb-3 group-hover:text-[#4A6604] transition-colors duration-200">
                   {event.title}
                 </h3>
 
@@ -62,7 +62,7 @@ export default function WhatsHappeningSection() {
                   {event.description}
                 </p>
 
-                <button className="w-full bg-[#FF7B00] hover:bg-[#FF7B00]/90 active:bg-[#F26419] text-white py-1.5 sm:py-2 md:py-2.5 px-3 sm:px-4 rounded-lg font-semibold text-[0.8rem] sm:text-[0.9rem] md:text-base transition-colors duration-200">
+                <button className="w-full bg-[#98D204] hover:bg-[#4A6604] active:bg-[#4A6604] text-white py-1.5 sm:py-2 md:py-2.5 px-3 sm:px-4 rounded-lg font-semibold text-[0.8rem] sm:text-[0.9rem] md:text-base transition-colors duration-200">
                   Learn More
                 </button>
               </div>
@@ -73,7 +73,7 @@ export default function WhatsHappeningSection() {
         {/* Discover More */}
         <div className="text-center mt-6 md:mt-10">
           <Link href="/events">
-            <button className="bg-[#FF7B00] hover:bg-[#FF7B00]/90 active:bg-[#F26419] text-white px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 rounded-full font-semibold text-[0.85rem] sm:text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
+            <button className="bg-[#FF7B00] hover:bg-[#F26419]/90 active:bg-[#F26419] text-white px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 rounded-full font-semibold text-[0.85rem] sm:text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
               View More
             </button>
           </Link>

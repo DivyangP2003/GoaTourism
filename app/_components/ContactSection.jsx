@@ -38,7 +38,14 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="bg-gray-100 py-16">
+    <section
+      className="relative w-full py-12 md:py-16 lg:py-20 overflow-hidden bg-repeat-x"
+      style={{
+        backgroundImage: "url('/Union.svg')",
+        backgroundSize: "auto 100%", // keep height 100%, repeat horizontally
+      }}
+    >
+      {" "}
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-2">
           CONTACT US
@@ -135,7 +142,7 @@ export default function ContactSection() {
                 className={`px-6 py-2 rounded-md font-medium transition 
                   ${
                     isFormValid
-                      ? "bg-[#FF7B00] text-white hover:bg-[#FF7B00] active:bg-[#F26419]"
+                      ? "bg-[#FF7B00] text-white hover:bg-[#F26419] active:bg-[#F26419]"
                       : "bg-gray-300 text-gray-700 cursor-not-allowed"
                   }`}
               >
@@ -255,39 +262,17 @@ function SocialMedia() {
   return (
     <div className="flex gap-4 justify-center md:justify-start">
       {/* Facebook */}
-      <a
-        href="#"
-        className="p-2 rounded-full border border-[#FF7B00] text-[#FF7B00] transition-colors duration-200
-       hover:bg-[#FF7B00] hover:text-white active:bg-[#F26419]"
-      >
-        <Facebook className="w-5 h-5" />
+      <a href="#" className="bg-orange-500 p-2 rounded">
+        <Facebook className="w-4 h-4 text-white" />
       </a>
-
-      {/* Instagram */}
-      <a
-        href="#"
-        className="p-2 rounded-full border border-[#FF7B00] text-[#FF7B00] transition-colors duration-200
-       hover:bg-[#FF7B00] hover:text-white active:bg-[#F26419]"
-      >
-        <Instagram className="w-5 h-5" />
+      <a href="#" className="bg-orange-500 p-2 rounded">
+        <Instagram className="w-4 h-4 text-white" />
       </a>
-
-      {/* LinkedIn */}
-      <a
-        href="#"
-        className="p-2 rounded-full border border-[#FF7B00] text-[#FF7B00] transition-colors duration-200
-       hover:bg-[#FF7B00] hover:text-white active:bg-[#F26419]"
-      >
-        <Linkedin className="w-5 h-5" />
+      <a href="#" className="bg-orange-500 p-2 rounded">
+        <Linkedin className="w-4 h-4 text-white" />
       </a>
-
-      {/* YouTube */}
-      <a
-        href="#"
-        className="p-2 rounded-full border border-[#FF7B00] text-[#FF7B00] transition-colors duration-200
-       hover:bg-[#FF7B00] hover:text-white active:bg-[#F26419]"
-      >
-        <Youtube className="w-5 h-5" />
+      <a href="#" className="bg-orange-500 p-2 rounded">
+        <Youtube className="w-4 h-4 text-white" />
       </a>
     </div>
   );

@@ -2,7 +2,14 @@ import { MapPin } from "lucide-react";
 
 export default function InteractiveMapSection() {
   return (
-    <section className="py-10 sm:py-12 md:py-16 bg-gray-100">
+    <section
+      className="relative w-full py-12 md:py-16 lg:py-20 overflow-hidden bg-repeat-x"
+      style={{
+        backgroundImage: "url('/Union.svg')",
+        backgroundSize: "auto 100%", // keep height 100%, repeat horizontally
+      }}
+    >
+ 
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12">
@@ -17,7 +24,7 @@ export default function InteractiveMapSection() {
 
         {/* Map Container */}
         <div className="bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg overflow-hidden">
-          <div className="h-64 sm:h-80 md:h-[400px] lg:h-[500px] bg-[#FF7B00] flex items-center justify-center p-4">
+          <div className="h-64 sm:h-80 md:h-[400px] lg:h-[500px] bg-white flex items-center justify-center p-4 border-[#FF7B00]">
             <div className="text-center">
               <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-transparent rounded-full mx-auto mb-3 sm:mb-4 flex items-center justify-center">
                 <MapPin className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-gray-300" />

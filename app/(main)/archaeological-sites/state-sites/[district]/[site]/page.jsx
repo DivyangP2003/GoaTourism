@@ -70,7 +70,7 @@ export default function StateSiteDetailPage() {
             {district.name}
           </Link>
           <ChevronRight className="h-4 w-4" />
-          <span className="text-black font-medium">{site.name}</span>
+          <span className="text-[#4A6604] font-semibold">{site.name}</span>
         </div>
 
         {/* Site Information */}

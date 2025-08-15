@@ -22,7 +22,7 @@ export default function StateSitesDistrictPage() {
 
   if (!district) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-black mb-4">District Not Found</h1>
           <Link href="/state-sites">
@@ -36,13 +36,13 @@ export default function StateSitesDistrictPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-white">
       {/* Hero Section with Background Image */}
       <div className="relative h-64 overflow-hidden mb-16">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/placeholder.svg?height=400&width=1200"
+            src={district.image || "/placeholder.svg"}
             alt={`STATE Sites in ${district.name}`}
             fill
             className="object-cover"
@@ -76,7 +76,7 @@ export default function StateSitesDistrictPage() {
           <ChevronRight className="h-4 w-4" />
           <Link
             href={`/archaeological-sites/state-sites/${encodeURIComponent(district.name.toLowerCase())}`}
-            className="hover:text-primary transition-colors duration-200"
+            className="hover:text-primary transition-colors duration-200 text-[#4A6604] font-semibold"
           >
             {district.name}
           </Link>
@@ -147,7 +147,7 @@ export default function StateSitesDistrictPage() {
         <div className="mt-16 text-center pb-16">
           <Link href="/archaeological-sites/state-sites">
             <div className="flex justify-center">
-              <button className="flex items-center gap-2 bg-[#FF7B00] hover:bg-[#FF7B00] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
+              <button className="flex items-center gap-2 bg-[#FF7B00] hover:bg-[#F26419] active:bg-[#F26419] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm md:text-lg transition-all hover:scale-105 cursor-pointer">
                 <ArrowLeft className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
                 Back To State Sites
               </button>

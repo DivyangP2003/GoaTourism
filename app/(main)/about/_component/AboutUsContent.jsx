@@ -10,7 +10,7 @@ export default function AboutUsContent() {
           <h1 className="text-4xl md:text-5xl font-bold text-black tracking-wide">ABOUT YUGAANTAR</h1>
         </div>
         {/* Mission Statement */}
-        <div className="my-20 text-center bg-white p-8 rounded-2xl border-2 border-[#ff7b00]">
+        <div className="my-16 bg-white rounded-2xl p-8 shadow-lg text-center">
           <h3 className="text-3xl font-bold text-black mb-4">Our Mission</h3>
           <p className="text-lg text-black leading-relaxed max-w-5xl mx-auto">
             To preserve, promote, and share the rich cultural heritage of Goa through innovative digital storytelling,
